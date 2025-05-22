@@ -1,3 +1,3 @@
-# comp1521-25t2
+# 25T2 COMP1521
 
 weekly tutorial work
