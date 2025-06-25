@@ -1,0 +1,1 @@
+Function style for MIPS ASS1 is in largest_element.s file.
