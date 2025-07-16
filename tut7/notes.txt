@@ -159,7 +159,7 @@ extract components of floats
 float a
 sign => (a >> 31) & 0x1
 exp => (a >> 23) & 0xFF 
-frac => a & 0x11111...1111
+frac => a & 0b11111...1111
 
 given components, then combine floats
 sign s, exp e, frac f
