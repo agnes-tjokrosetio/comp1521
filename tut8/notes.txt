@@ -1,0 +1,25 @@
+What is the full pathname of COMP1521's web directory?
+full pathname => /home/cs1521/web
+
+Which directory is ~jas/../..?
+refer to the root directory
+
+Links to the children of a given directory are stored as entries in the directory
+structure. Where is the link to the parent directory stored?
+.. -> link us to the parent directory
+
+What kind of file system object is cat?
+cat is a file
+
+What kind of file system object is home?
+home is a directory
+
+What kind of file system object is tty0?
+tty0 is a file
+
+What kind of file system object is a symbolic link? What value does it contain?
+symbolic link is a file that contains the path to another file 
+
+Symbolic links change the filesystem from a tree structure to a graph structure.
+How do they do this?
+produce graph since they allow links between file system objects.
