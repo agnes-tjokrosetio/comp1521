@@ -21,7 +21,6 @@ int main(void) {
                     // given in the `void *data` argument above
     );
 
-    pthread_join(thread, NULL);
     
     return 0;
 }

@@ -10,25 +10,6 @@
 
 int main(int argc, char *argv[]) {
     // TODO
-    if (argc < 2) {
-        fprintf(stderr, "must have at least one argument\n");
-        exit(1);
-    }
-
-    char *pathname = argv[1];
-    FILE *file = fopen(pathname, "r");
-    if (file == NULL) {
-        perror("fopen failed");
-        exit(1);
-    }
-
-    char buffer[1024];
-    fgets(buffer, 1024, file);
-    for (int i = 0; buffer[i] != '\0'; i++) {
-        fputc(buffer[i], stdout);
-    }
-
-    fclose(file);
-
+    
     return 0;
 }

@@ -12,37 +12,58 @@ Hexadecimal  => 0  1  2  3  4  5  6  7  8  9  A   B   C   D   E   F
 -------------------
 
 Decimal Value: 1
-Binary: 1 = 2^0 -> digit 1 is at position 0 => 0000 0001
-Octal: 00 000 001 -> 001 -> 0o1 (grouping bits in 3s from right to left)
-Hexadecimal: 0000 0001 -> 01 -> 0x01 -> 0x1 (grouping bits in4s from right to left)
+Binary: 
+Octal:
+Hexadecimal:
 
 -------------------
 
 Decimal Value: 8
-Binary: 8 = 2^3 -> digit 1 is at position 3 => 0000 1000
-Octal: 00 001 000 -> 010 -> 0o10
-Hexadecimal: 0000 1000 -> 08 -> 0x08 -> 0x8
+Binary: 
+Octal:
+Hexadecimal:
+
+-------------------
+
+Decimal Value: 10
+Binary: 
+Octal:
+Hexadecimal:
 
 -------------------
 
 Decimal Value: 15
-Binary: 15 = 8 + 4 + 2 + 1 = 2^3 + 2^2 + 2^1 + 2^0 -> digits 1 is at position 3, 2, 1, 0 => 0000 1111
-Octal: 00 001 111 -> 017 -> 0o17
-Hexadecimal: 0000 1111 -> 0F -> 0xF
+Binary: 
+Octal:
+Hexadecimal:
+
+-------------------
+
+Decimal Value: 16
+Binary: 
+Octal:
+Hexadecimal:
+
+-------------------
+
+Decimal Value: 100
+Binary: 
+Octal:
+Hexadecimal:
 
 -------------------
 
 Decimal Value: 127
-Binary: 127 = 2^6 + 2^5 + 2^4 + 2^3 + 2^2 + 2^1 + 2^0 => 0111 1111
-Octal: 01 111 111 -> 177 -> 0o177
-Hexadecimal: 0111 1111 -> 7F -> 0x7F
+Binary: 
+Octal:
+Hexadecimal:
 
 -------------------
 
 Decimal Value: 200
-Binary: 200 = 2^7 + 2^6 + 2^3 => 1100 1000
-Octal: 11 001 000 -> 310 -> 0o310
-Hexadecimal: 1100 1000 -> C8 -> 0xC8
+Binary: 
+Octal:
+Hexadecimal:
 
 -------------------
 

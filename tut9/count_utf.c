@@ -18,41 +18,11 @@
 int codepoint_length(char byte);
 
 int main(int argc, char **argv) {
-    if (argc < 2) {
-        exit(1);
-    }
-
-    char *utf8_string = argv[1];
-    int count = 0;
-    for (int i = 0; utf8_string[i] != '\0'; i++) {
-        int length = codepoint_length(utf8_string[i]);
-        count += 1;
-        i += (length - 1);
-    }
-
-    printf("the string has %d codepoints in the string\n", count);
-
+    // TODO
 }
 
 
 // function to get the length of each utf-8 char
 int codepoint_length(char byte) {
-    // check 1 byte
-    if ((byte & 0b10000000) == 0b00000000) {
-        return 1;
-    }
-    // check 2 bytes
-    else if ((byte & 0b11100000) == 0b11000000) {
-        return 2;
-    }
-    // check 3 bytes
-    else if ((byte & 0b11110000) == 0b11100000) {
-        return 3;
-    }
-    // check 4 bytes
-    else if ((byte & 0b11111000) == 0b11110000) {
-        return 4;
-    }
-    // invalid utf8_character
-    return 0;
+    // TODO
 }

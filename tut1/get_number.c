@@ -1,3 +1,7 @@
+////////////////////////////////////////////////////////////////////////////////
+// Program to print a number using pointers.
+// TODO: fix the following function
+// => use malloc() to allocate memory with a programmer controlled lifetime
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,14 +13,10 @@ int main(void) {
     free(num);
 }
 
-// TODO: fix the following function
-// => use malloc() to allocate memory with a programmer controlled lifetime
+// TODO: fix the following function, i.e. use malloc()
 int *get_num_ptr(void) {
-    // int x = 42;
-    // return &x;
-    int *x = malloc(sizeof(int));
-    *x = 42;
-    return x;
+    int x = 42;
+    return &x;
 }
 
 

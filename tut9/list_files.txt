@@ -11,16 +11,16 @@ lrwxrwxrwx   1 cs1521 cs1521   11 Jul 16 18:33 web -> public_html
 
 
 Who can access the 17s2.work directory?
-Columns are: file perms, link counts, owner, group, size, timestamp, name
-The user cs1521, and any member of the cs1521 group can cd into the 17s2.work directory and list the directory contents. The user cs1521 can also create new entries in 17s2.work.
+
 
 What operations can a typical user perform on the public_html directory?
-Assume that typical user means someone who is not a member of the cs1521 group and not the owner (i.e. other group). Such a user can cd into the directory since x will allow for traversal, but they cannot list the contents of the directory or write files. If they know the name of a file in the directory, they can also open that file (assuming they have read permission on the file).
+
+
 
 What is the file web?
-The file web is a symbolic link (or symlink). It effectively makes web an alternative name for the public_html directory.
+
+
 
 What is the difference between stat("web", &info) and lstat("web", &info)?
 (where info is an object of type (struct stat))
-The function call stat("web", &info) follows the symlink, and places meta-data about the public_html directory in the info struct.
-The function call lstat("web", &info) places meta-data about the symlink itself into the info struct.
+

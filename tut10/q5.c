@@ -10,26 +10,11 @@
 #include <unistd.h>
 
 void *thread(void *message) {
-    while (true) {
-        printf("%s", (char *)message);
-        sleep(3);
-    }
-
-    return NULL;
+    // TODO
 }
 
 int main() {
-    // create a thread
-    char *message = "hello\n";
-    pthread_t thread_id;
-    pthread_create(&thread_id, NULL, thread, message);
-
-    while (true) {
-        printf("there\n");
-        sleep(1);
-    }
-
-    pthread_join(thread_id, NULL);
-
+    // TODO
+    
     return 0;
 }

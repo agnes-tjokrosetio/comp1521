@@ -14,19 +14,12 @@
 void chmod_if_needed(char *pathname);
 
 int main(int argc, char *argv[]) {
-    for (int arg = 1; arg < argc; arg++) {
-        chmod_if_needed(argv[arg]);
-    }
+    // TODO
 
     return 0;
 }
 
-// chmod a file if publically-writeable
+// function to chmod a file if publically-writeable
 void chmod_if_needed(char *pathname) {
-    struct stat s;
-    stat(pathname, &s);
-    // UPDATE permissions
-    // S_IWOTH
-    int mode = s.st_mode & ~S_IWOTH;
-    chmod(pathname, mode);
+    // TODO
 }

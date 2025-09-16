@@ -1,3 +1,13 @@
+////////////////////////////////////////////////////////////////////////////////
+// This program scans in a number n and prints the sum of all integers up to
+// and including n.
+// 
+// 1. Rewrite sum() so it uses recursion instead of a loop
+// 
+// 2.1 What happens in memory when this program runs?
+// 2.2 What is the difference between the loop and recursive versions?
+////////////////////////////////////////////////////////////////////////////////
+
 #include <stdio.h>
 
 int sum(int n);
@@ -15,20 +25,9 @@ int main(int argc, char *argv[]) {
 
 // TODO: rewrite the following function so it uses recursion instead of a loop.
 int sum(int n) {
-    // int result = 0;
-    // for (int i = 0; i <= n; i++) {
-    //     result += i;
-    // }
-    // return result;
-    
-    // base case
-    if (n == 1) return n;
-    return n + sum(n-1);
+    int result = 0;
+    for (int i = 0; i <= n; i++) {
+        result += i;
+    }
+    return result;
 }
-
-// sum(n) = n + sum(n-1)
-// ...
-
-// sum(2) = 2 + sum(1)
-// sum(1) = 1
-

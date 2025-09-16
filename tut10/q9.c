@@ -7,7 +7,6 @@
 #include <pthread.h>
 
 int global_total = 0;
-pthread_mutex_t counter_lock = PTHREAD_MUTEX_INITIALIZER;
 
 void *add_5000_to_counter(void *data) {
     for (int i = 0; i < 5000; i++) {
@@ -15,9 +14,7 @@ void *add_5000_to_counter(void *data) {
         nanosleep (&(struct timespec){.tv_nsec = 1}, NULL);
         
         // increment the global total by 1
-        pthread_mutex_lock(&counter_lock);
         global_total++;
-        pthread_mutex_unlock(&counter_lock);
     }
 
     return NULL;

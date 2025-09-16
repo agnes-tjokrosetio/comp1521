@@ -41,29 +41,26 @@ points_loop_cond:
 # int height = topography_grid[row][col];
 
 	# calculate &my_points[i] = i * 8 + base address of my_points
-	mul	$t1, $t0, 8
-	la	$t2, my_points
-	add	$t3, $t2, $t1
+
+
 
 	# int row = my_points[i].row;
 	# get my_points[i].row using the offset, ROW_OFFSET
-	lw	$t4, ROW_OFFSET($t3)
+
+
 
 	# int col = my_points[i].col;
 	# get my_points[i].col using the offset, COL_OFFSET
-	lw	$t5, COL_OFFSET($t3)
+
+
 
 	# int height = topography_grid[row][col];
 	# calculate &topography_grid[row][col]
 	#           = base address of topography_grid + 4 * (row * MAP_SIZE + col)
-	mul	$t6, $t4, MAP_SIZE
-	add	$t6, $t6, $t5
-	mul	$t6, $t6, 4
 
-	lw	$t6, topography_grid($t6)
 	
-	# printf("Height at %d,%d=%d\n", row, col, height);
 
+	# printf("Height at %d,%d=%d\n", row, col, height);
 	li	$v0, 4			# $v0 = 4 (print string)
 	la	$a0, height_str		# load address of height_str into $a0
 	syscall				# print height_str
