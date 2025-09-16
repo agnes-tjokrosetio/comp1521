@@ -1,1 +1,0 @@
-/web/cs1521/25T2/activities/titanic/files.ln/titanic_main.c
