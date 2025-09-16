@@ -1,6 +1,6 @@
 # COMP1521
 
-weekly tutorial work
+This repo contains weekly tutorial work (code + slides).
 
 ## tutotal slides
 
