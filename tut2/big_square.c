@@ -19,16 +19,17 @@ int main(void) {
     //     printf("%d\n", y);
     // }
 
+    // return 0;
+
     if (x <= SQUARE_MAX) goto print_square;
-
     printf("square too big for 32 bits\n");
-
     goto end;
 
     print_square:
         y = x * x;
-        printf("%d\n", y);  
-    
+        printf("%d\n", y);
+
     end:
         return 0;
+
 }

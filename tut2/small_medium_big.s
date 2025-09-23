@@ -10,14 +10,18 @@ main:
 
 	# printf("Enter a number: ");
 	# syscall 4: print string
-
+	la	$a0, prompt_str
+	li	$v0, 4
+	syscall
 
 	# scanf("%d", x);
 	# syscall 5: scan integer
-
+	li	$v0, 5
+	syscall
+	# x in v0
 
 	# message = "small/big\n";
-
+	la	$a0, small_big
 
 # Note: for statements with multiple conditional branches, write each branch
 #       one at a time as if it were a single statement, then translate the
@@ -26,16 +30,29 @@ main:
 
 	# if (x > 100 && x < 1000)
 	#     message = "medium";
+	ble	$v0, 100, end
+	bge	$v0, 1000, end
 
+	la	$a0, medium
 
-
+end:
 	# printf("%s", message);
-
+	li	$v0, 4
+	syscall
 
 	# return from main
-
+	jr 	$ra
 
 # ##############################################################################
 # Data Segment
 
         .data
+
+prompt_str:
+	.asciiz "Enter a number: "
+
+small_big:
+	.asciiz "small/big\n"
+
+medium:
+	.asciiz "medium"

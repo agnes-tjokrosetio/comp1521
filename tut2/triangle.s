@@ -7,5 +7,46 @@
 
 main:
 
+# initialise i (counter)
+	li	$t0, 1
 
-        jr      $ra
+outer_loop:
+# outer loop
+# loop for i <= 10, then exit outer_loop
+	bgt	$t0, 10, end
+
+	# inner loop
+	# initialise j (counter)
+	li	$t1, 0
+
+inner_loop:
+	# loop for j < i, then exit inner_loop (i.e. increment outer_loop)
+	bge	$t1, $t0, outer_loop_increment
+
+	# printf("*");
+	# syscall 11: print character
+	la	$a0, '*'
+	li	$v0, 11
+	syscall
+
+	# j += 1
+	# loop back to inner_loop
+	add	$t1, $t1, 1
+	b	inner_loop
+
+outer_loop_increment:
+# outer loop increment
+	# printf("%c", '\n');
+	# syscall 11: print character
+	la	$a0, '\n'
+	li	$v0, 11
+	syscall
+
+	# i += 1
+	# loop back to outer_loop
+	add	$t0, $t0, 1
+	b	outer_loop
+
+end:
+	# return from main
+	jr	$ra

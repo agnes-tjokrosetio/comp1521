@@ -1,6 +1,26 @@
 Notes
 
-n/a.
+--------------------------------------------------------------------------------
+MIPSY EQUIVALENT OF MULTIPLE CONDITIONALS
+--------------------------------------------------------------------------------
 
+CASE 1 - &&
+
+if (x > 100 && x < 1000) {
+    ... some code ...
+}
+
+ble	x, 100, dont_execute
+bge	x, 1000, dont_execute
+
+
+CASE 2 - ||
+
+if (x > 100 || x < 1000) {
+    ... some code ...
+}
+
+bgt x, 100, execute_code
+blt x, 1000, execute_code
 
 
