@@ -12,30 +12,30 @@ Hexadecimal  => 0  1  2  3  4  5  6  7  8  9  A   B   C   D   E   F
 -------------------
 
 Decimal Value: 1
-Binary: 
-Octal:
-Hexadecimal:
+Binary: 2^0 -> bit 1 at position 0 => 0b00000001
+Octal: 00 000 001 => 0o001
+Hexadecimal: 0000 0001 => 0x01
 
 -------------------
 
 Decimal Value: 8
-Binary: 
-Octal:
-Hexadecimal:
+Binary: 2^3 => bit 1 at position 3 => 0b00001000
+Octal: 00 001 000 => 0o010
+Hexadecimal: 0000 1000 => 0x08
 
 -------------------
 
 Decimal Value: 10
-Binary: 
-Octal:
-Hexadecimal:
+Binary: 2^3 + 2^1 => bits 1 set at position 3 and 1 => 0b00001010
+Octal: 00 001 010 => 0o012
+Hexadecimal: 0000 1010 => 0x0A
 
 -------------------
 
 Decimal Value: 15
-Binary: 
-Octal:
-Hexadecimal:
+Binary: 0b1111
+Octal: 0o17
+Hexadecimal: 0x0f
 
 -------------------
 

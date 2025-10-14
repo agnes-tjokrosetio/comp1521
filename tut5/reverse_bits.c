@@ -1,21 +1,16 @@
 #include <assert.h>
 #include <stdio.h>
 
+
 typedef unsigned int Word;
 
-// TODO: write the following function so it reverses the order of the bits in the variable w.
-Word reverseBits(Word w) {
-    Word ret = 0;
-    for (unsigned int bit = 0; bit < 32; bit++) {
-        Word wMask = 1u << (31 - bit);
-        Word retMask = 1u << bit;
-        if (w & wMask) {
-            ret = ret | retMask;
-        }
-    }
 
-    return ret;
+// TODO: reverses the order of the bits in the variable w.
+Word reverseBits(Word w) {
+
+    return 0;
 }
+
 
 // Test
 int main(void) {
