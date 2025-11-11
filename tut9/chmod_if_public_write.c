@@ -16,10 +16,21 @@ void chmod_if_needed(char *pathname);
 int main(int argc, char *argv[]) {
     // TODO
 
+    for (int arg = 1; arg < argc; arg++) {
+        chmod_if_needed(argv[arg]);
+    }
+
     return 0;
 }
 
 // function to chmod a file if publically-writeable
 void chmod_if_needed(char *pathname) {
     // TODO
+    struct stat s;
+    stat(pathname, &s);
+    int mode = s.st_mode & ~S_IWOTH;
+    // 111 111 111
+    // 111 111 101
+    // ~S_IWOTH
+    chmod(pathname, mode);
 }
