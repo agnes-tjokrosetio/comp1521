@@ -1,6 +1,6 @@
 # COMP1521
 
-This repo contains weekly tutorial work (code + slides).
+Computer Systems Fundamentals: Weekly tutorial work (code + slides).
 
 ## tutotal slides
 
