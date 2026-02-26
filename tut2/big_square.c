@@ -12,12 +12,22 @@ int main(void) {
     scanf("%d", &x);
 
     // TODO: change the following code to use goto instead of if else statements
-    if (x > SQUARE_MAX) {
-        printf("square too big for 32 bits\n");
-    } else {
+    // if (x > SQUARE_MAX) {
+    //     printf("square too big for 32 bits\n");
+    // } else {
+    //     y = x * x;
+    //     printf("%d\n", y);
+    // }
+
+    // take negation of condition
+    if (x <= SQUARE_MAX) goto print_square;
+    printf("square too big for 32 bits\n");
+    goto end;
+
+    print_square:
         y = x * x;
         printf("%d\n", y);
-    }
 
-    return 0;
+    end:
+        return 0;
 }
