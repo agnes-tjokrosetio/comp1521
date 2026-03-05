@@ -4,27 +4,30 @@
 	.text
 
 main:
-	# s = &string[0]; 
+	la	$t0, string
 
+	li	$t1, 0
 
-	# intialise int length
+loop:
+	lb	$t2, ($t0)
+	beq	$t2, '\0', end
 
+	add	$t0, $t0, 1
+	add	$t1, $t1, 1
 
-# loop
-	# loop until *s != '\0' then exit loop
+	b	loop
 
+end:
 
-	# increment length and s
+	move	$a0, $t1
+	li	$v0, 1
+	syscall
 
-
-	# keep looping
-
-	
-	# return
-
-
+	jr	$ra
 
 # ##############################################################################
 # Data Segment
 
 	.data
+string:
+	.asciiz "...."
