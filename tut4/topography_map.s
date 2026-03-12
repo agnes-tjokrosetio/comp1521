@@ -40,25 +40,21 @@ points_loop_cond:
 # int col = my_points[i].col;
 # int height = topography_grid[row][col];
 
-	# calculate &my_points[i] = i * 8 + base address of my_points
+	# address my_points[i]
+	mul	$t1, $t0, 8
+	la	$t2, my_points
+	add	$t2, $t2, $t1
 
-
-
-	# int row = my_points[i].row;
-	# get my_points[i].row using the offset, ROW_OFFSET
-
-
-
-	# int col = my_points[i].col;
-	# get my_points[i].col using the offset, COL_OFFSET
-
-
-
-	# int height = topography_grid[row][col];
-	# calculate &topography_grid[row][col]
-	#           = base address of topography_grid + 4 * (row * MAP_SIZE + col)
-
+	lw	$t3, ROW_OFFSET($t2) # row
 	
+	lw	$t4, COL_OFFSET($t2) # col
+
+	# address topography_grid[row][col]
+	mul	$t5, $t3, MAP_SIZE
+	add	$t5, $t5, $t4
+	mul	$t5, $t5, 4
+
+	lw	$t5, topography_grid($t5)
 
 	# printf("Height at %d,%d=%d\n", row, col, height);
 	li	$v0, 4			# $v0 = 4 (print string)
@@ -66,7 +62,7 @@ points_loop_cond:
 	syscall				# print height_str
 
 	li	$v0, 1			# $v0 = 1 (print int)
-	move	$a0, $t4		# $a0 = row
+	move	$a0, $t3		# $a0 = row
 	syscall				# print row
 
 	li	$v0, 11			# $v0 = 11 (print ASCII character)
@@ -74,7 +70,7 @@ points_loop_cond:
 	syscall				# print ','
 
 	li	$v0, 1			# $v0 = 1 (print int)
-	move	$a0, $t5		# $a0 = col
+	move	$a0, $t4		# $a0 = col
 	syscall				# print col
 
 	li	$v0, 11			# $v0 = 11 (print ASCII character)
@@ -82,7 +78,7 @@ points_loop_cond:
 	syscall				# print '='
 
 	li	$v0, 1			# $v0 = 1 (print int)
-	move	$a0, $t6		# $a0 = height
+	move	$a0, $t5		# $a0 = height
 	syscall				# print height
 
 	li	$v0, 11			# $v0 = 11 (print ASCII character)

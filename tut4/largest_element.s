@@ -6,59 +6,61 @@
         .text
 
 max:
-	# Frame:    []   	=>  All the registers that are pushed and popped
-	# Uses:     []		=>  Every register you have used
-	# Clobbers: []		=>  Clobbers = Uses - Frame (registers that don't preserve values)
+	# Frame:    [$ra, $s0]   			=>  All the registers that are pushed and popped
+	# Uses:     [$ra, $s0, $a0, $a1, $v0]		=>  Every register you have used
+	# Clobbers: [$a0, $a1, $v0]			=>  Clobbers = Uses - Frame (registers that don't preserve values)
 	#
-	# Locals:           	=>  Variables defined or used in the function
-
+	# Locals:           				=>  Variables defined or used in the function
+	# - $s0: int first_element
+	# - $v0: int max_so_far
+	# - $a0: int array[], &array[1]
+	# - $a1: int length, length - 1
 	#
-	# Structure:        	=>  Labels you create
+	# Structure:        				=>  Labels you create
 	#   max
 	#   -> max__prologue
 	#   -> max__body
+	#	-> max__body_base_case
+	#	-> max__body_recurse
+	#	-> max__body_so_far
 	#   -> max__epilogue
 max__prologue:
-	# create stack
-
+        begin					# create stack
+        push    $ra
+        push    $s0
 
 max__body:
-	# int first_element = array[0];
+        lw      $s0, ($a0)			# int first_element = array[0];
 
+        bne     $a1, 1, max__body_recurse 	# if (length = 1) go to base_case, otherwise do recurse
 
-	# if (length = 1) go to base_case, otherwise do recurse
-
-
-# PEDANTIC NOTE:
-# For the assignment, when you create labels include the function section
-# i.e. i have a label "method" in a function section "function__body" => "function__body_method"
 max__body_base_case:
-	# return first_element;
-
+        move    $v0, $s0			# return first_element;
+        j       max__epilogue
 
 max__body_recurse:
-	# int max_so_far = max(&array[1], length - 1);
-	# get &array[1]; length - 1
-	# call max function
+        add     $a0, $a0, 4			# int max_so_far = max(&array[1], length - 1);
+        sub     $a1, $a1, 1
+        jal     max
 
-
-	# if (first_element > max_so_far) max_so_far = first_element;
-
+        ble     $s0, $v0, max__epilogue		# if (first_element > max_so_far) max_so_far = first_element;
 
 max__body_so_far:
-	# return max_so_far;
-
+        move    $v0, $s0			# return max_so_far;
 
 max__epilogue:
-	# clean up stack
+        pop     $s0				# clean up stack
+        pop     $ra
+        end
+
+        jr      $ra				# return from max
 
 
-	# return from max
-
-
+# ==============================================================================
 # main function (some testing code that calls the max function)
 main:
 main__prologue:
+	begin
 	push	$ra
 
 main__body:
@@ -74,11 +76,12 @@ main__body:
 	li	$v0, 11			# syscall 11: print_char
 	syscall				# printf("%c", '\n');
 
-	li	$v0, 0
-
 main__epilogue:
 	pop	$ra
-	jr	$ra			# return 0;
+	end
+	
+	li	$v0, 0			# return 0;
+	jr	$ra
 
 
 # ##############################################################################

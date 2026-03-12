@@ -6,66 +6,109 @@
         .text
 
 main:
-	# create statck
+	# Frame:    [$ra]   			=>  All the registers that are pushed and popped
+	# Uses:     [$ra, $a0 - $a3, $v0]	=>  Every register you have used
+	# Clobbers: [$a0 - $a3, $v0]		=>  Clobbers = Uses - Frame (registers that don't preserve values)
+	#
+	# Locals:           			=>  Variables defined or used in the function
+	# - $v0: int result
+	#
+	# Structure:        			=>  Labels you create
+	#   main
+	#   -> main_prologue
+	#   -> main_body
+	#   -> main_epilogue
 
+main_prologue:
+	begin
+	push 	$ra
 
 main_body:
-	# load arguments
-
 
 	# int result = sum4(11, 13, 17, 19);
+	li	$a0, 11
+	li	$a1, 13
+	li	$a2, 17
+	li	$a3, 19
+	jal	sum4
+
+	# printf("%d\n", result);
+	move	$a0, $v0
+	li	$v0, 1
+	syscall
+
+	li	$a0, '\n'
+	li	$v0, 11
+	syscall
 
 
-	# printf("%d", result);
-	# syscall 1: print integer
+main_epilogue:
+	pop 	$ra
+	end
 
-
-	# printf("\n");
-	# syscall 11: print character
-
-
-
-epilogue:
-	# clean up stack
-
-
-	# return from main
+	# return 0;
+	li	$v0, 0
+	jr 	$ra
 
 
 # ==============================================================================
 # sum4 function
 sum4:
-
-	# create the stack
-
+	# Frame:    [$ra, $s0 - $s2]   			=>  All the registers that are pushed and popped
+	# Uses:     [$ra, $s0 - $s2, $a0 - $a3, $v0]	=>  Every register you have used
+	# Clobbers: [$a0 - $a3, $v0]			=>  Clobbers = Uses - Frame (registers that don't preserve values)
+	#
+	# Locals:           				=>  Variables defined or used in the function
+	# - $s2: int res1
+	# - $v0: int res2
+	# - $a0: int a , int c , res1
+	# - $a1: int b , int d , res2
+	# - $a2: int c
+	# - $a3: int d
+	#
+	# Structure:        				=>  Labels you create
+	#   sum4
+	#   -> sum4_prologue
+	#   -> sum4_body
+	#   -> sum4_epilogue
+sum4_prologue:
+	begin
+	push	$ra
+	push	$s0
+	push	$s1
+	push	$s2
 
 sum4_body:
-
-	# save arguments a, b, c, d
-
+	# store int a, int b
+	move	$s0, $a2
+	move	$s1, $a3
 
 	# int res1 = sum2(a, b);
-	# a is in a0, and b is in a1
-
+	jal	sum2
+	move	$s2, $v0 # res1
 
 	# int res2 = sum2(c, d);
-
+	move	$a0, $s0
+	move	$a1, $s1
+	jal	sum2 # res2
 
 	# return sum2(res1, res2);
-
+	move	$a0, $s2
+	move	$a1, $v0
+	jal	sum2
 
 sum4_epilogue:
-	# clean up stack
-
-
-	# return from sum4
-
+	pop	$s2
+	pop	$s1
+	pop	$s0
+	pop	$ra
+	
+	end
+	jr	$ra
 
 # ==============================================================================
 # sum2 function
 sum2:
+	add	$v0, $a0, $a1
 
-	# return x + y;
-
-
-	# return from sum2
+	jr	$ra
