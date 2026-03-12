@@ -20,6 +20,7 @@ main:
 	#   -> main_epilogue
 
 main_prologue:
+	# create stack
 	begin
 	push 	$ra
 
@@ -43,6 +44,7 @@ main_body:
 
 
 main_epilogue:
+	# clean up stack
 	pop 	$ra
 	end
 
@@ -109,6 +111,7 @@ sum4_epilogue:
 # ==============================================================================
 # sum2 function
 sum2:
-	add	$v0, $a0, $a1
 
+	# return x + y;
+	add	$v0, $a0, $a1
 	jr	$ra

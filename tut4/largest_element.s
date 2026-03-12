@@ -60,7 +60,7 @@ max__epilogue:
 # main function (some testing code that calls the max function)
 main:
 main__prologue:
-	begin
+	begin				# create stack
 	push	$ra
 
 main__body:
@@ -77,7 +77,7 @@ main__body:
 	syscall				# printf("%c", '\n');
 
 main__epilogue:
-	pop	$ra
+	pop	$ra			# clean up stack
 	end
 	
 	li	$v0, 0			# return 0;
