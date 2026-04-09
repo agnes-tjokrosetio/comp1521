@@ -10,5 +10,25 @@
 int main(int argc, char *argv[]) {
     // TODO
     
+    if (argc < 2) {
+        fprintf(stderr, "must need 2 arguments");
+        exit(1);
+    }
+
+    char *pathname = argv[1];
+    FILE *file = fopen(pathname, "w");
+    if (file == NULL) {
+        perror("fopen");
+        exit(1);
+    }
+
+    int byte = fgetc(stdin);
+    while (byte != EOF && byte != '\n') {
+        fputc(byte, file);
+        byte = fgetc(stdin);
+    }
+
+    fprintf(file, "\n");
+
     return 0;
 }

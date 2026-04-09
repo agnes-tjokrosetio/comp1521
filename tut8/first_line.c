@@ -10,6 +10,34 @@
 
 int main(int argc, char *argv[]) {
     // TODO
+    if (argc < 2) {
+        fprintf(stderr, "must need 2 arguments");
+        exit(1);
+    }
     
+    char *pathname = argv[1];
+    FILE *file = fopen(pathname, "r");
+    if (file == NULL) {
+        perror("fopen");
+        exit(1);
+    }
+
+    // int byte = fgetc(file);
+    // while (byte != EOF && byte != '\n') {
+    //     fputc(byte, stdout);
+    //     byte = fgetc(file);
+    // }
+    // fputc('\n', stdout);
+
+    char buffer[1024];
+    fgets(buffer, 1024, file);
+    for (int i = 0; buffer[i] != '\0'; i++) {
+        fputc(buffer[i], stdout);
+    }
+    fputc('\n', stdout);
+
+
+    fclose(file);
+
     return 0;
 }
