@@ -11,16 +11,19 @@ lrwxrwxrwx   1 cs1521 cs1521   11 Jul 16 18:33 web -> public_html
 
 
 Who can access the 17s2.work directory?
-
+the user cs1521 can read write and execute
+the group cs1521 can read and execute
+other cannot access this directory
 
 What operations can a typical user perform on the public_html directory?
-
+no actions other than cd into the directory
 
 
 What is the file web?
-
+is a symbolic link 
 
 
 What is the difference between stat("web", &info) and lstat("web", &info)?
 (where info is an object of type (struct stat))
-
+stat will place meta data about public_html into into
+lstat places meta data about symlink into the info

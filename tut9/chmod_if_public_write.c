@@ -15,6 +15,9 @@ void chmod_if_needed(char *pathname);
 
 int main(int argc, char *argv[]) {
     // TODO
+    for (int arg = 1; arg < argc; arg++) {
+        chmod_if_needed(argv[arg]);
+    }
 
     return 0;
 }
@@ -22,4 +25,10 @@ int main(int argc, char *argv[]) {
 // function to chmod a file if publically-writeable
 void chmod_if_needed(char *pathname) {
     // TODO
+    struct stat s;
+    stat(pathname, &s);
+    // no public write perms => ~S_IWOTH
+    // update new perms => s.st_mode & ~S_IWOTH
+    int new_mode = s.st_mode & ~S_IWOTH;
+    chmod(pathname, new_mode);
 }

@@ -19,10 +19,55 @@ int codepoint_length(char byte);
 
 int main(int argc, char **argv) {
     // TODO
-}
+    if (argc < 2) {
+        exit(1);
+    }
 
+    char *utf8_string = argv[1];
+    int i = 0;
+    int count = 0;
+
+    while (utf8_string[i] != '\0') {
+        int length = codepoint_length(utf8_string[i]);
+        // example code to check for proceeding bytes
+        // if i was at a utf8 character that was two bytes in length:
+        //     for (int j = 1; j <= length; j++) {
+        //         if (!(utf8_string[j + i] & 0b11000000) == 0b10000000) {
+        //             => utf8 has an invalid byte
+        //             => utf8 character is invalid
+        //         }
+        //     }
+        i += length;
+        count += 1;
+    }
+
+    printf("there are %d codepoints in the string\n", count);
+
+}
 
 // function to get the length of each utf-8 char
 int codepoint_length(char byte) {
     // TODO
+    
+    // checking for 0xxxxxxx
+    if ((byte & 0b10000000) == 0b00000000) {
+        return 1;
+    }
+
+    // checking for 110xxxxx 10xxxxxx
+    if ((byte & 0b11100000) == 0b11000000) {
+        return 2;
+    }
+
+    // checking 1110xxxx 10xxxxxx 10xxxxxx
+    if ((byte & 0b11110000) == 0b11100000) {
+        return 3;
+    }
+
+    // checking 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+    if ((byte & 0b11111000) == 0b11110000) {
+        return 4;
+    }
+
+    return 0;
 }
