@@ -11,10 +11,28 @@
 
 void *thread(void *message) {
     // TODO
+    while (true) {
+        printf("%s", (char *)message);
+        sleep(1);
+    }
+
+    return NULL;
+
 }
 
 int main() {
     // TODO
+    char *message = "hello\n";
+
+    pthread_t thread_id;
+    pthread_create(&thread_id, NULL, thread, message);
+
+    while (true) {
+        printf("there\n");
+        sleep(3);
+    }
+
+    pthread_join(thread_id, NULL);
     
     return 0;
 }

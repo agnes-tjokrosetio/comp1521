@@ -11,7 +11,7 @@
 //     $ ./now
 //     29-02-2022
 //     03:59:60
-//     cs1521
+//     cs1521   
 //     zappa.orchestra.cse.unsw.EDU.AU
 //     /home/cs1521/lab08
 ////////////////////////////////////////////////////////////////////////////////
@@ -30,10 +30,20 @@ extern char **environ;
 
 void spawn_and_wait(char *args[]) {
     // create a process
-
+    pid_t pid;
+    int status = posix_spawn(&pid, args[0], NULL, NULL, args, environ);
+    if (status != 0) {
+        errno = status;
+        perror("posix_spawn");
+        exit(1);
+    }
 
     // wait for process to finish
-
+    int exit_status;
+    if (waitpid(pid, &exit_status, 0) == -1) {
+        perror("waitpid");
+        exit(1);
+    }
     
 }
 
@@ -47,7 +57,22 @@ int main(int argc, char *argv[]) {
     //     realpath .
 
     // TODO...
-    
+    char *argv1[] = {"/usr/bin/date", "+%d-%m-%Y", NULL};
+    spawn_and_wait(argv1);
+
+    char *argv2[] = {"/usr/bin/date", "+%T", NULL};
+    spawn_and_wait(argv2);
+
+    char *argv3[] = {"/usr/bin/whoami", NULL};
+    spawn_and_wait(argv3);
+
+    char *argv4[] = {"/usr/bin/hostname", "-f", NULL};
+    spawn_and_wait(argv4);
+
+    char *argv5[] = {"/usr/bin/realpath", ".", NULL};
+    spawn_and_wait(argv5);
+
+
     return 0;
 }
 
