@@ -6,7 +6,12 @@
 #include <stdio.h>
 
 int main(void) {
-
+    int count = 0;
+    int c;
+    while ((c = getchar()) != EOF) {
+        count += 1;
+    }
+    printf("the number of chars enter = %d\n", count);
 }
 
 
