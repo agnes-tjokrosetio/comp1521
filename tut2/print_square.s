@@ -6,29 +6,30 @@
         .text
 
 main:
-        # printf("Enter a number: ");
-	# syscall 4: print string
+	
+	li	$v0, 4			# printf("Enter a number: ");
+	la	$a0, prompt_str
+	syscall
 
+	li	$v0, 5			# scanf("%d", &x);
+	syscall
 
-	# scanf("%d", x);
-	# syscall 5: scan integer
+	mul	$t0, $v0, $v0 		# y = x * x
 
+	li	$v0, 1			# printf("%d\n", y);
+	move	$a0, $t0
+	syscall
 
-	# y = x * x
+	li	$v0, 11
+	li	$a0, '\n'
+	syscall
 
-
-	# printf("%d", y);
-	# syscall 1: print integer
-
-
-	# printf("%c", '\n');
-	# syscall 11: print character
-
-
-	# return from main
-
+	li	$v0, 0			# return 0
+	jr	$ra
 
 # ##############################################################################
 # Data Segment
 
         .data
+prompt_str:
+	.asciiz "Enter a number: "

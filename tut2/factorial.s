@@ -7,44 +7,61 @@
 
 main:
 	# printf("n  = ");
-	# syscall 4: print string
+	li	$v0, 4
+	la	$a0, input_str
+	syscall
 
+	# scanf("%d", &n);
+	li	$v0, 5
+	syscall
+	move	$t0, $v0
 
-	# scanf("%d", n);
-	# syscall 5: scan integer
+	# int fac = 1
+	li	$t1, 1
 
+	# int i = 1
+	li	$t2, 1
 
-	# initialise fac, fac = 1
+loop:
+	# i <= n
+	bgt	$t2, $t0, end
 
+	# fac *= i
+	mul	$t1, $t1, $t2
 
-	# initialise i, i = 1
+	# i++
+	add	$t2, $t2, 1
+	b	loop
 
+end:
 
-# loop
-	# condition: loop for i <= n, then exit loop
+	# printf("n! = %d\n", fac);
+	li	$v0, 4
+	la	$a0, output_str
+	syscall
 
+	move	$a0, $t1
+	li	$v0, 1
+	syscall
 
-	# body: fac *= i
+	li	$v0, 4
+	la	$a0, newline
+	syscall
 
+	# return 0
+	li	$v0, 0
+	jr	$ra
 
-	# increment (: i++) and then loop back to condition
-
-
-	# printf("n! = ");
-	# syscall 4: print string
-
-
-	# printf("%d", fac);
-	# syscall 1: print integer
-
-
-	# printf("%c", '\n');
-	# syscall 11: print character
-
-
-	# return from main
 
 # ##############################################################################
 # Data Segment
 
         .data
+input_str:
+	.asciiz "n  = "
+
+output_str:
+	.asciiz "n! = "
+
+newline:
+	.asciiz "\n"

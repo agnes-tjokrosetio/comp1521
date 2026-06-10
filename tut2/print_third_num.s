@@ -7,23 +7,28 @@
 
 main:
 
-# initialise i (or whatever the counter is)
+	# int x = 24
+	li	$t0, 24
 
+loop:
+	# x < 42
+	bge	$t0, 42, end
 
-# loop condition: 
-	# loop for i <= 42, then exit loop
-	
-
-# loop body:
 	# printf("%d\n", x);
-	# syscall 1: print integer
-	# syscall 11: print character
+	li	$v0, 1
+	move	$a0, $t0
+	syscall
 
+	li	$v0, 11
+	li	$a0, '\n'
+	syscall
 
-# loop increment
-	# i += 3
-	# loop back to condition
+	# x += 3
+	add	$t0, $t0, 3
+	b	loop
 
+end:
+	# return
+	jr	$ra
 
-# return from main
 
