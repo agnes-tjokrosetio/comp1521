@@ -2,44 +2,81 @@
 
 
 # Constant for the size of the array
-# This is treated like a literal (i.e. you load it with `li`, not `la/lb/lw`) but is more clear than a magic number
 N_SIZE = 10
-
+NEW_SIZE = N_SIZE * 4
 
 ###################################################################
 # Code Segment
         .text
 
 main:
-        # initialise int i
+
+loop_init:
+	li	$t0, 0
+
+loop_cond:
+	# bug: SIZE WAS INCORRECT (NEW SIZE SHOULD BE N_SIZE * 4)
+	bge	$t0, NEW_SIZE, loop_end
+
+loop_body:
+	# method 1: &numbers[i]
+	# la	$t1, numbers
+	# mul	$t2, $t0, 4
+	# add	$t2, $t2, $t1
+
+	# method 2: &numbers[i]
+	lw	$t3, numbers($t0)
+	bge	$t3, 0, loop_step
+
+	# numbers[i] += 42;
+	add	$t3, $t3, 42
+
+	# numbers[i] += 42;
+	sw	$t3, numbers($t0) 
+
+loop_step:
+	# i++
+	add	$t0, $t0, 4
+	b	loop_cond
+
+loop_end:
 
 
-# loop
-        # loop for i < N_SIZE, then exit loop (i.e. increment loop)
+# PRINT LOOP 
 
+	# i = 0
+	li	$t0, 0
+loop_print:
+	# while (i < N_SIZE)
+	bge	$t0, N_SIZE, end 
 
-        # &numbers[i] = address of numbers + i * sizeof(numbers[i])
+	# &numbers[i]
+	la	$t1, numbers
+	mul	$t2, $t0, 4
+	add	$t3, $t2, $t1
 
+	# printf("%d", numbers[i])
+	lw	$a0, ($t3)
+	li	$v0, 1
+	syscall
 
-        # if (numbers[i] < 0) {
-        #     numbers[i] += 42;
-        # }
+	# putchar(' ')
+	li	$a0, ' '
+	li	$v0, 11
+	syscall
 
+	# i++
+	add	$t0, $t0, 1
+	b	loop_print
 
-        # increment i and keep looping
-
-
-
-# (optional) print the new array
-#            syscall 1 & 11: print integer and character
-
-
-        # return from main
-
+end:
+	jr	$ra
+        
 
 ###################################################################
 # Data Segment
 
-
         .data
 # int numbers[10] = {0, 1, 2, -3, 4, -5, 6, -7, 8, 9};
+numbers:
+	.word 0, 1, 2, -3, 4, -5, 6, -7, 8, 9
