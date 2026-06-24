@@ -4,7 +4,8 @@
 # (i.e., 1 byte).
 
 # Constants
-
+FLAG_ROWS = 6
+FLAG_COLS = 12
 
 # ##############################################################################
 # Code Segment
@@ -12,41 +13,38 @@
         .text
 
 main:
-	# initialise row
-
+	li	$t0, 0 					# row = 0
 
 outer_loop:
-	# loop for row < FLAG_ROWS, then exit outer_loop to epilogue
+	bge	$t0, FLAG_ROWS, end			# row < FLAG_ROWS
 
-
-	# initialise col
-
-
+	li	$t1, 0					# col = 0
 inner_loop:
-	# loop for col < FLAG_COLS, then exit inner_loop to outer_loop_increment
+	bge	$t1, FLAG_COLS, outer_loop_increment	# col < FLAG_COLS
 
+	la	$t2, flag				# base address of flag
+	mul	$t3, $t0, FLAG_COLS			# (row * total cols + cols) * sizeof(element)
+	add	$t3, $t3, $t1
+	add	$t3, $t3, $t2				# address of flag[row][col]
 
-	# calculate &flag[row][col] = base address of flag + (row * FLAG_COLS + col)
+	lb	$a0, ($t3)				# printf("%c", flag[row][col]);
+	li	$v0, 11
+	syscall
 
-
-	# printf("%c", flag[row][col]);
-	# syscall 11: print character
-
-
-	# increment col and loop back to inner_loop
-
+	add	$t1, $t1, 1				# col++
+	j	inner_loop
 
 outer_loop_increment:
-	# printf("\n");
-	# syscall 11: print character
 
+	li	$v0, 11					# printf("\n");
+	li	$a0, '\n'
+	syscall
 
-	# increment row and loop back to outer_loop
+	add	$t0, $t0, 1				# row++
+	j	outer_loop
 
-
-epilogue:
-	# return from main
-        jr      $ra
+end:
+	jr	$ra
 
 # ##############################################################################
 # Data Segment

@@ -6,66 +6,78 @@
         .text
 
 main:
-	# create statck
+	begin 
+	push	$ra
 
+	li	$a0, 11
+	li	$a1, 13
+	li	$a2, 17
+	li	$a3, 19
 
 main_body:
-	# load arguments
 
+	jal	sum4			# int result = sum4(11, 13, 17, 19);
 
-	# int result = sum4(11, 13, 17, 19);
+	move	$a0, $v0		# printf("%d", result);
+	li	$v0, 1
+	syscall
 
-
-	# printf("%d", result);
-	# syscall 1: print integer
-
-
-	# printf("\n");
-	# syscall 11: print character
-
-
+	li	$v0, 11			# printf("\n");
+	li	$a0, '\n'
+	syscall
 
 epilogue:
-	# clean up stack
+	pop	$ra
+	end
 
-
-	# return from main
+	jr	$ra			# return
 
 
 # ==============================================================================
 # sum4 function
 sum4:
+	# int a => $a0
+	# int b	=> $a1
+	# int c => $a2
+	# int d => $a3
 
-	# create the stack
-
+	begin
+	push	$ra
+	push	$s0
+	push	$s1
+	push	$s2
 
 sum4_body:
+	move	$s0, $a2	# save int c
+	move	$s1, $a3	# save int d
 
-	# save arguments a, b, c, d
+	jal	sum2
+	move	$s2, $v0	# int res1 = sum2(a, b);
 
+	move	$a0, $s0
+	move	$a1, $s1
+	jal	sum2		# int res2 = sum2(c, d);
 
-	# int res1 = sum2(a, b);
-	# a is in a0, and b is in a1
-
-
-	# int res2 = sum2(c, d);
-
-
-	# return sum2(res1, res2);
-
+	move	$a0, $s2
+	move	$a1, $v0
+	jal	sum2		# sum2(res1, res2);
 
 sum4_epilogue:
-	# clean up stack
+	pop	$s2
+	pop	$s1
+	pop	$s0
+	pop	$ra
+	end
 
-
-	# return from sum4
+	jr	$ra		# return
 
 
 # ==============================================================================
 # sum2 function
 sum2:
+	# int x => $a0
+	# int y => $a1
 
-	# return x + y;
+	add	$v0, $a0, $a1		# x + y
 
-
-	# return from sum2
+	jr	$ra			# return
