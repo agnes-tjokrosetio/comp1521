@@ -4,6 +4,7 @@ Represent the decimal values as 8-bit binary, 3-digit octal, and 2-digit hexadec
 
 Due to the base values of each representation, note the digit values:
 Decimal      => 0  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15 
+Binary       => 0  1
 Octal        => 0  1  2  3  4  5  6  7
 Hexadecimal  => 0  1  2  3  4  5  6  7  8  9  A   B   C   D   E   F
 
@@ -12,16 +13,16 @@ Hexadecimal  => 0  1  2  3  4  5  6  7  8  9  A   B   C   D   E   F
 -------------------
 
 Decimal Value: 1
-Binary: 
-Octal:
-Hexadecimal:
+Binary: 2^0 => binary bit 1 set at position 0 => 0000 0001
+Octal: 000 000 001 => 0o001 => 0o1
+Hexadecimal: 0000 0001 => 0x01
 
 -------------------
 
 Decimal Value: 8
-Binary: 
-Octal:
-Hexadecimal:
+Binary: 2^3 => binary bit 1 set at position 3 => 0000 1000
+Octal:  000 001 000 => 0o10
+Hexadecimal: 0000 1000 => 0x08 => 0x8
 
 -------------------
 
@@ -33,9 +34,9 @@ Hexadecimal:
 -------------------
 
 Decimal Value: 15
-Binary: 
-Octal:
-Hexadecimal:
+Binary: 2^3 + 2^2 + 2^1 + 2^0 => 0000 1111
+Octal: 000 001 111 => 0o017
+Hexadecimal: 0000 1111 => 0x0F
 
 -------------------
 
@@ -47,9 +48,9 @@ Hexadecimal:
 -------------------
 
 Decimal Value: 100
-Binary: 
-Octal:
-Hexadecimal:
+Binary: 01100100
+Octal: 0o144
+Hexadecimal: 0x64
 
 -------------------
 

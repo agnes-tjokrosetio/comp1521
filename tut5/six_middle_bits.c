@@ -31,9 +31,14 @@ uint32_t six_middle_bits(uint32_t u) {
 
     // Decimal Number           = 1198362198 
     // Binary Form              = 0100 0111 0110 1101 1000 1110 0101 0110
+
+    // middle bits are M        = 0100 0111 0110 1MMM MMM0 1110 0101 0110
+    // u >> 13                  = 0000 0000 0000 0010 0011 1011 01MM MMMM
+    // mask                     = 0000 0000 0000 0000 0000 0000 0011 1111
+    // MIDDLE BITS              = 0000 0000 0000 0000 0000 0000 0010 1100
+    // corresponding decimal    = 44
     
-
     // TODO:
-
-    return 0;
+    return (u >> 13) & 0b111111;
+    // return 0;
 }
