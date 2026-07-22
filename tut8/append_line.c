@@ -9,6 +9,25 @@
 
 int main(int argc, char *argv[]) {
     // TODO
+    if (argc < 2) {
+        fprintf(stderr, "not enough arguments\n");
+        exit(1);
+    }
 
+    char *pathname = argv[1];
+    FILE *file_pointer = fopen(pathname, "a");
+    if (file_pointer == NULL) {
+        perror("fopen");
+        exit(1);
+    }
+
+    int byte = fgetc(stdin);
+    while (byte != EOF && byte != '\n') {
+        fputc(byte, file_pointer);
+        byte = fgetc(stdin);
+    }
+
+    fclose(file_pointer);
+    
     return 0;
 }
