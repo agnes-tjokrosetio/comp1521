@@ -11,16 +11,15 @@ lrwxrwxrwx   1 cs1521 cs1521   11 Jul 16 18:33 web -> public_html
 
 
 Who can access the 17s2.work directory?
-
+user can access, group that the user is under
 
 What operations can a typical user perform on the public_html directory?
-
-
+execute perms for the directory, can cd into directory and any sub directories under it
 
 What is the file web?
-
-
+web is a symbolic link to pyblic html
 
 What is the difference between stat("web", &info) and lstat("web", &info)?
 (where info is an object of type (struct stat))
-
+stat => meta data of the file
+lstat => meta data of the symbolic link
