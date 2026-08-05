@@ -5,8 +5,9 @@
 
 #include <stdio.h>
 #include <pthread.h>
+#include <stdatomic.h>
 
-int global_total = 0;
+atomic_int global_total = 0;
 
 void *add_5000_to_counter(void *data) {
     for (int i = 0; i < 5000; i++) {
@@ -14,7 +15,8 @@ void *add_5000_to_counter(void *data) {
         nanosleep (&(struct timespec){.tv_nsec = 1}, NULL);
         
         // increment the global total by 1
-        global_total++;
+        // global_total++;
+        atomic_fetch_add(&global_total, 1);
         
     }
 

@@ -30,10 +30,20 @@ extern char **environ;
 
 void spawn_and_wait(char *args[]) {
     // create a process
-
+    pid_t pid;
+    int ret = posix_spawn(&pid, args[0], NULL, NULL, args, environ);
+    if (ret != 0) {
+        errno = ret;
+        perror("posix_spawn");
+        exit(1);
+    }
 
     // wait for process to finish
-
+    int exit_status;
+    if (waitpid(pid, &exit_status, 0) == -1) {
+        perror("waitpid");
+        exit(1);
+    }
     
 }
 
@@ -47,7 +57,18 @@ int main(int argc, char *argv[]) {
     //     realpath .
 
     // TODO...
-    
+    char *argv1[] = {"/usr/bin/date", "+%d-%m-%Y", NULL};
+    spawn_and_wait(argv1);
+
+    char *argv2[] = {"/usr/bin/date", "+%T", NULL};
+    spawn_and_wait(argv2);
+
+    char *argv3[] = {"/usr/bin/whoami", NULL};
+    spawn_and_wait(argv3);
+
+    char *argv4[] = {"/usr/bin/hostname", "-f", NULL};
+    spawn_and_wait(argv4);
+
     return 0;
 }
 
