@@ -1,6 +1,6 @@
 # COMP1521
 
-Computer Systems Fundamentals Tutorials
+Computer Systems Fundamentals
 
 # tutorial slides
 
