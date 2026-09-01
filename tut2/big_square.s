@@ -11,29 +11,6 @@ SQUARE_MAX = 46340
 
 main:
 
-	# printf("Enter a number: ");
-	# syscall 4: print string
-
-
-	# scanf("%d", x);
-	# syscall 5: scan integer
-
-
-# Note: take the negation of conditional statements
-
-	# if (x > SQUARE_MAX)
-	#     printf("square too big for 32 bits\n");
-	#     syscall 4: print string
-
-
-	# else
-	#     y = x * x
-	#     printf("%d\n", y);
-	#     syscall 1: print integer
-	#     syscall 11: print character
-
-
-	# return from main
 
 
 # ##############################################################################

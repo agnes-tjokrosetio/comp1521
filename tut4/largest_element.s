@@ -19,41 +19,13 @@ max:
 	#   -> max__body
 	#   -> max__epilogue
 max__prologue:
-	# create stack
 
 
 max__body:
-	# int first_element = array[0];
-
-
-	# if (length = 1) go to base_case, otherwise do recurse
-
-
-# PEDANTIC NOTE:
-# For the assignment, when you create labels include the function section
-# i.e. i have a label "method" in a function section "function__body" => "function__body_method"
-max__body_base_case:
-	# return first_element;
-
-
-max__body_recurse:
-	# int max_so_far = max(&array[1], length - 1);
-	# get &array[1]; length - 1
-	# call max function
-
-
-	# if (first_element > max_so_far) max_so_far = first_element;
-
-
-max__body_so_far:
-	# return max_so_far;
 
 
 max__epilogue:
-	# clean up stack
 
-
-	# return from max
 
 
 # main function (some testing code that calls the max function)

@@ -11,30 +11,7 @@ N_SIZE = 10
         .text
 
 main:
-        # initialise int i
 
-
-# loop
-        # loop for i < N_SIZE, then exit loop (i.e. increment loop)
-
-
-        # &numbers[i] = address of numbers + i * sizeof(numbers[i])
-
-
-        # if (numbers[i] < 0) {
-        #     numbers[i] += 42;
-        # }
-
-
-        # increment i and keep looping
-
-
-
-# (optional) print the new array
-#            syscall 1 & 11: print integer and character
-
-
-        # return from main
 
 
 ###################################################################
@@ -42,4 +19,3 @@ main:
 
 
         .data
-# int numbers[10] = {0, 1, 2, -3, 4, -5, 6, -7, 8, 9};

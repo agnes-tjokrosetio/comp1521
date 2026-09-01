@@ -40,25 +40,8 @@ points_loop_cond:
 # int col = my_points[i].col;
 # int height = topography_grid[row][col];
 
-	# calculate &my_points[i] = i * 8 + base address of my_points
 
 
-
-	# int row = my_points[i].row;
-	# get my_points[i].row using the offset, ROW_OFFSET
-
-
-
-	# int col = my_points[i].col;
-	# get my_points[i].col using the offset, COL_OFFSET
-
-
-
-	# int height = topography_grid[row][col];
-	# calculate &topography_grid[row][col]
-	#           = base address of topography_grid + 4 * (row * MAP_SIZE + col)
-
-	
 
 	# printf("Height at %d,%d=%d\n", row, col, height);
 	li	$v0, 4			# $v0 = 4 (print string)
