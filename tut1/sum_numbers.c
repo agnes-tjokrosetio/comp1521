@@ -25,9 +25,20 @@ int main(int argc, char *argv[]) {
 
 // TODO: rewrite the following function so it uses recursion instead of a loop.
 int sum(int n) {
-    int result = 0;
-    for (int i = 0; i <= n; i++) {
-        result += i;
-    }
-    return result;
+    // int result = 0;
+    // for (int i = 0; i <= n; i++) {
+    //     result += i;
+    // }
+    // return result;
+
+    // if (n == 1) return n;
+    // return n + sum(n - 1);
+
+    return (n == 1) ? n : n + sum(n - 1);
 }
+
+// 5 + sum(4)
+// 5 + 4 + sum(3)
+// 5 + 4 + 3 + sum(2)
+// 5 + 4 + 3 + 2 + sum(1)
+

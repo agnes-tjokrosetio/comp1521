@@ -15,8 +15,10 @@ int main(void) {
 
 // TODO: fix the following function, i.e. use malloc()
 int *get_num_ptr(void) {
-    int x = 42;
-    return &x;
+    // int x = 42;
+    int *x = malloc(sizeof(int));
+    *x = 42;
+    return x;
 }
 
 
