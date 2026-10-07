@@ -1,1 +1,6 @@
-Function style for MIPS ASS1 is in largest_element.s file.
+
+For 1D Arrays: &array[i] = base address of array + i * (size of element)
+
+For 2D Arrays: &array[i][j] = base address of array + ([(i * total cols) + j] * size of element)
+
+For Structs: struct_object.field = base address of struct + offset to field
