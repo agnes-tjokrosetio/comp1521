@@ -31,9 +31,20 @@ uint32_t six_middle_bits(uint32_t u) {
 
     // Decimal Number           = 1198362198 
     // Binary Form              = 0100 0111 0110 1101 1000 1110 0101 0110
-    
+    // let the middle bits be M = 0100 0111 0110 1MMM MMM0 1110 0101 0110
 
-    // TODO:
+    // METHOD 1:
+    // 1. shift to the right
+    // 0000 0000 0000 0010 0011 1011 01MM MMMM (u >> 13)
+    // 2. take the mask
+    // 0000 0000 0000 0000 0000 0000 0011 1111
+    // 0000 0000 0000 0000 0000 0000 00MM MMMM
+    return (u >> 13) & 0x3f;
 
-    return 0;
+    // METHOD 2:
+    // 1. left shift first:
+    // MMMM MM01 1100 1010 1100 0000 0000 0000
+    // 2. right shift:
+    // 0000 0000 0000 0000 0000 0000 00MM MMMM
+
 }

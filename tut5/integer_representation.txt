@@ -11,31 +11,31 @@ Hexadecimal  => 0  1  2  3  4  5  6  7  8  9  A   B   C   D   E   F
 
 -------------------
 
-Decimal Value: 1
-Binary: 
-Octal:
-Hexadecimal:
+Decimal Value: 1 = 2^0
+Binary: 0000 0001
+Octal:  00 000 001 = 000 000 001 = 0o001
+Hexadecimal: 0000 0001 = 0x01
 
 -------------------
 
-Decimal Value: 8
-Binary: 
-Octal:
-Hexadecimal:
+Decimal Value: 8 = 2^3
+Binary: 0000 1000
+Octal: 00 001 000 = 000 001 000 = 0o010
+Hexadecimal: 0000 1000 = 0x08 = 0x8
 
 -------------------
 
-Decimal Value: 10
-Binary: 
-Octal:
-Hexadecimal:
+Decimal Value: 10 = 8 + 2 = 2^3 + 2^1
+Binary: 00001010
+Octal: 00 001 010 = 0o012
+Hexadecimal: 0000 1010 = 0x0A
 
 -------------------
 
 Decimal Value: 15
-Binary: 
-Octal:
-Hexadecimal:
+Binary: 00001111
+Octal: 00 001 111 = 0o17
+Hexadecimal: 0x0F
 
 -------------------
 
@@ -54,9 +54,9 @@ Hexadecimal:
 -------------------
 
 Decimal Value: 127
-Binary: 
-Octal:
-Hexadecimal:
+Binary: 01111111
+Octal: 0o177
+Hexadecimal: 0x7f
 
 -------------------
 
