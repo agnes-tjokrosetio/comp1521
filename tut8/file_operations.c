@@ -23,7 +23,7 @@ int examplefunction(void) {
     FILE *file = fopen("./text.txt", "w");
     // WRITE  a single byte to the file
     // (and move FP foward by 1 byte)
-    fputc("A", file);
+    fputc('A', file);
     // WRITE multiple bytes to the file
     // (and move FP foward by 5 bytes)
     fwrite(" test", 1, 5, file);
