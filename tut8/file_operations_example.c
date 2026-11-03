@@ -16,7 +16,7 @@ int examplefunction(void) {
 
 }
 
-// using FPUTC, FWRITE, FPRINTF
+// using FPUTC, FWRITE, FPUTS, FPRINTF
 int examplefunction(void) {
     // open a file in WRITE mode
     
@@ -29,6 +29,10 @@ int examplefunction(void) {
     // (and move FP foward by ? bytes)
     
 
+    // WRITE a string to the file
+    // (and move FP foward by ? bytes)
+
+    
     // WRITE a formatted string to the file
     // (and move FP foward by ? bytes)
     
@@ -106,7 +110,7 @@ int examplefunction(void) {
 int examplefunction(void) {
     // open a file in READ mode
     
-    
+
     // READ one line from a file (max 1024 bytes)
     // (and move FP foward by num of bytes read)
     

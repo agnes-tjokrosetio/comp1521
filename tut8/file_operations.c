@@ -17,7 +17,7 @@ int examplefunction(void) {
     fclose(file)
 }
 
-// using FPUTC, FWRITE, FPRINTF
+// using FPUTC, FWRITE, FPUTS, FPRINTF
 int examplefunction(void) {
     // open a file in WRITE mode
     FILE *file = fopen("./text.txt", "w");
@@ -27,6 +27,9 @@ int examplefunction(void) {
     // WRITE multiple bytes to the file
     // (and move FP foward by 5 bytes)
     fwrite(" test", 1, 5, file);
+    // WRITE a string to the file
+    // (and move FP foward by 5 bytes)
+    fputs("hello", file);
     // WRITE a formatted string to the file
     // (and move FP foward by 3 bytes)
     fprintf(file, "%d\n", 42)
