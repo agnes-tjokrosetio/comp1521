@@ -10,6 +10,27 @@
 
 int main(int argc, char *argv[]) {
     // TODO
+    if (argc < 2) {
+        fprintf(stderr, "error: not enough arguments");
+        return 1;
+    }
+
+    char *pathname = argv[1];
+    FILE *file = fopen(pathname, "r");
+    if (file == NULL) {
+        perror("fopen");
+        exit(1);
+        // return 1;
+    }
+
+    int byte = fgetc(file);
+    while (byte != EOF && byte != '\n') {
+        fputc(byte, stdout);
+        byte = fgetc(file);
+    }
+    fputc('\n', stdout);
+
+    fclose(file);
     
     return 0;
 }

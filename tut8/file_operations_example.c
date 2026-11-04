@@ -1,13 +1,16 @@
 // using FOPEN, FCLOSE
 int examplefunction(void) {
     // READ from a file
-
+    FILE *file = fopen("test.txt", "r");
+    fclose(file);
 
     // WRITE to a file (delete any existing data)
-
+    FILE *file = fopen("test.txt", "w");
+    fclose(file);
 
     // APPEND to a file
-
+    FILE *file = fopen("test.txt", "a");
+    fclose(file);
 
     // READ & WRITE to a file (doesn't delete any existing data)
 
@@ -19,23 +22,24 @@ int examplefunction(void) {
 // using FPUTC, FWRITE, FPUTS, FPRINTF
 int examplefunction(void) {
     // open a file in WRITE mode
-    
+    FILE *file = fopen("test.txt", "w")
     
     // WRITE  a single byte to the file
-    // (and move FP foward by ? byte)
-
+    // (and move FP foward by 1 byte)
+    fputc('A', file);
+    fputc(4, file);
 
     // WRITE multiple bytes to the file
     // (and move FP foward by ? bytes)
-    
+    fwrite(" test", 1, 5, file);
 
     // WRITE a string to the file
     // (and move FP foward by ? bytes)
-
+    fputs(" test", file);
     
     // WRITE a formatted string to the file
     // (and move FP foward by ? bytes)
-    
+    fprintf(file, "%d\n", 30);
     
     // close the file
     fclose(file)
@@ -44,11 +48,15 @@ int examplefunction(void) {
 // using FGETC
 int examplefunction(void) {
     // open a file in READ mode
-    
+    FILE *file = fopen("test.txt", "r");
 
     // READ a single byte from the file
     // (and move FP foward by ? byte)
-    
+    int byte = fgetc(file);
+    if (byte == EOF) {
+        fprintf(stderr, "error: can't read last byte");
+        return 1;
+    }
 
     // close the file
     fclose(file)
@@ -57,11 +65,16 @@ int examplefunction(void) {
 // using FREAD
 int examplefunction(void) {
     // open a file in READ mode
-    
+    FILE *file = fopen("test.txt", "r");
     
     // READ 4 bytes from the file
     // (and move FP foward by ? bytes)
-
+    uint8_t buffer[4];
+    int get_bytes = fread(buffer, 1, 4, file);
+    if (get_bytes != 4) {
+        fprintf(stderr, "error");
+        return 1;
+    }
 
     // close the file
     fclose(file)
@@ -70,11 +83,12 @@ int examplefunction(void) {
 // using FGETS
 int examplefunction(void) {
     // open a file in READ mode
-    
+    FILE *file = fopen("test.txt", "r");
     
     // READ one line from a file (max 1024 bytes)
     // (and move FP foward by num of bytes read)
-
+    char buffer[1024];
+    fgets(buffer, 1024, file);
 
     // close the file
     fclose(file)
@@ -84,23 +98,23 @@ int examplefunction(void) {
 int examplefunction(void) {
     // open a file in READ mode
     // file pointer points to the first byte in the file
-    
+    FILE *file = fopen("test.txt", "r")
 
     // move file pointer to the last byte in the file
     // (0 would be incorrect as it would be EOF)
-    
+    fseek(file, -1, SEEK_END);
     // move file pointer to the third last byte in the file
-    
+    fseek(file, -3, SEEK_END);
 
     // move file pointer to the first byte in the file
-    
+    fseek(file, 0, SEEK_SET);
     // move file pointer to the third byte in the file
-    
+    fseek(file, 2, SEEK_SET);
 
     // move file pointer forward by 64 bytes
-    
+    fseek(file, 64, SEEK_CUR);
     // move file pointer backwards by 32 bytes
-    
+    fseek(file, -32, SEEK_CUR);
 
     // close the file
     fclose(file)

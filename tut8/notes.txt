@@ -22,3 +22,4 @@ What kind of file system object is a symbolic link? What value does it contain?
 
 Symbolic links change the filesystem from a tree structure to a graph structure.
 How do they do this?
+
