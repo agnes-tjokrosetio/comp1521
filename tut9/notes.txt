@@ -1,0 +1,4 @@
+UTF8 CHARACTERS:
+
+1 byte UTF-8 => 00101110 (valid) , 11100010 (non-valid)
+2 byte UTF-8 => 11001110 10001011 (valid) , 11001110 00110011 (non valid) , 10001110 00110011 (non-valid)

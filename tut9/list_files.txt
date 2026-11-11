@@ -11,16 +11,16 @@ lrwxrwxrwx   1 cs1521 cs1521   11 Jul 16 18:33 web -> public_html
 
 
 Who can access the 17s2.work directory?
-
+file owner has read, write and executes perms on the file
+group owner has read and execute perms
 
 What operations can a typical user perform on the public_html directory?
-
-
+a typical can only execute the file
 
 What is the file web?
-
-
+symbolic link
 
 What is the difference between stat("web", &info) and lstat("web", &info)?
 (where info is an object of type (struct stat))
-
+stat is meta data of a file
+lstat is meta data of symlink
